@@ -9,7 +9,7 @@
       update_cache: yes
       name: "*"
       state: dist-upgrade
-    when: ansible_distribution == "openSUSE Tumbleweed"   
+    when: ansible_distribution in ["openSUSE Tumbleweed", "SUSE", "openSUSE Leap"]   
   
   - name: refresh package cache and update all packages (RedHat and CentOS)
     dnf:
