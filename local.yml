@@ -4,7 +4,7 @@
   become: yes
 
   tasks:
-  - name: refresh package cache and update all packages (openSUSE Tumbleweed)
+  - name: refresh package cache and update all packages (openSUSE Leap/Tumbleweed and SUSE)
     community.general.zypper:
       update_cache: yes
       name: "*"
