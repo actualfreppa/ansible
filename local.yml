@@ -10,3 +10,17 @@
       name: "*"
       state: dist-upgrade
     when: ansible_distribution == "openSUSE Tumbleweed"   
+  
+  - name: refresh package cache and update all packages (RedHat and CentOS)
+    dnf:
+      name: "*"
+      update_cache: yes
+      state: latest
+    when: ansible_distribution in ["CentOS", "RedHat", "Fedora"]
+
+  - name: refresh package cache and update all packages (Ubuntu and Debian)
+    apt:
+      name: "*"
+      state: latest
+      update_cache: yes
+    when: ansible_distribution in ["Debian", "Ubuntu"]
