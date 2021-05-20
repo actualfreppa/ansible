@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+
+  tasks:
+  - name: refresh package cache and update all packages (openSUSE Tumbleweed)
+    community.general.zypper:
+      update_cache: yes
+      name: "*"
+      state: dist-upgrade
+    when: ansible_distribution == "openSUSE Tumbleweed"   
