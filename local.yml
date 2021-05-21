@@ -24,3 +24,24 @@
       state: latest
       update_cache: yes
     when: ansible_distribution in ["Debian", "Ubuntu"]
+
+  - name: install EPLE for CentOS
+    package:
+      name: epel-release
+    when: ansible_distribution == "CentOS"
+
+  - name: install packages
+      package:
+        name:
+          - htop
+          - tmux
+          - neovim
+
+  - name: copy custom .bashrcfile
+    copy:
+      src: files/bashrc
+      dest: /home/freppa/.bashrc
+      owner: freppa
+      group: freppa
+
+
