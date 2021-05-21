@@ -44,4 +44,22 @@
       owner: freppa
       group: freppa
 
+  - name: Add ansible user
+    user: confuser
+    system: yes
+
+  - name: set up sudo for ansible confuser
+    copy:
+      src: files/sudoers_confuser
+      dest: /etc/sudoers.d/confuser
+      owner: root
+      group: root
+      mode: 0440
+
+  - name: add ansible pull auto-provisioning cron job
+    cron:
+      name: ansible auto-provision
+      user: confuser
+      minute: "*/10"
+      job: ansible-pull -o -U https://github.com/actualfreppa/ansible.git
 
